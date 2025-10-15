@@ -14,6 +14,15 @@ type ContentType = "slogan" | "social" | "hashtags" | "product" | "email";
 const Index = () => {
   const { toast } = useToast();
   const [contentType, setContentType] = useState<ContentType>("slogan");
+  
+  const pastelColors = [
+    'bg-[hsl(var(--pastel-blue))]',
+    'bg-[hsl(var(--pastel-yellow))]',
+    'bg-[hsl(var(--pastel-pink))]',
+    'bg-[hsl(var(--pastel-green))]',
+    'bg-[hsl(var(--pastel-purple))]',
+    'bg-[hsl(var(--pastel-orange))]',
+  ];
   const [businessName, setBusinessName] = useState("");
   const [productInfo, setProductInfo] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
@@ -100,7 +109,7 @@ const Index = () => {
           <div className="inline-flex items-center justify-center gap-3 mb-4">
             <Sparkles className="w-12 h-12 text-primary animate-pulse" />
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold font-cursive bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent">
             Genie
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -243,9 +252,9 @@ const Index = () => {
               ) : (
                 <div className="space-y-4 max-h-[600px] overflow-y-auto">
                   {results.map((result, index) => (
-                    <Card key={index} className="bg-card/50 border-primary/10">
+                    <Card key={index} className={`border-primary/10 ${pastelColors[index % pastelColors.length]}`}>
                       <CardContent className="p-4 space-y-3">
-                        <p className="text-sm whitespace-pre-wrap">{result}</p>
+                        <p className="text-sm whitespace-pre-wrap text-foreground/90">{result}</p>
                         <div className="flex gap-2">
                           <Button
                             size="sm"
