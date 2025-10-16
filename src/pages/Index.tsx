@@ -35,7 +35,7 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
 
   const showTargetAudience = ["social", "product", "email"].includes(contentType);
-  const showTone = ["social", "product", "email"].includes(contentType);
+  const showTone = ["slogan", "social", "product", "email"].includes(contentType);
   const showPlatform = ["social", "hashtags"].includes(contentType);
 
   const handleGenerate = async () => {
