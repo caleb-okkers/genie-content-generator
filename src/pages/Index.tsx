@@ -108,12 +108,12 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
         <header className="text-center space-y-4 py-8">
-          <div className="inline-flex items-center justify-center gap-3 mb-4">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <Sparkles className="w-16 h-16 text-primary animate-pulse" />
+            <h1 className="text-5xl md:text-6xl font-bold font-cursive bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
+              Genie
+            </h1>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold font-cursive bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
-            Genie
-          </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             AI-powered marketing content generator for your business
           </p>
@@ -215,20 +215,32 @@ const Index = () => {
                   min={1}
                   max={5}
                   value={variations}
-                  onChange={(e) => setVariations(Math.min(5, Math.max(1, parseInt(e.target.value) || 1)))}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === '') {
+                      setVariations(1);
+                    } else {
+                      const num = parseInt(val);
+                      if (num < 1) setVariations(1);
+                      else if (num > 5) setVariations(5);
+                      else setVariations(num);
+                    }
+                  }}
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label>Custom AI Prompt (Optional)</Label>
-                <Textarea
-                  placeholder="Override the default prompt with your own custom instructions..."
-                  value={customPrompt}
-                  onChange={(e) => setCustomPrompt(e.target.value)}
-                  rows={3}
-                />
-                <p className="text-xs text-muted-foreground">Leave empty to use the default prompt for your selected content type</p>
-              </div>
+              {results.length > 0 && (
+                <div className="space-y-2">
+                  <Label>Edit AI Prompt (Optional)</Label>
+                  <Textarea
+                    placeholder="Modify the prompt for regenerating content..."
+                    value={customPrompt}
+                    onChange={(e) => setCustomPrompt(e.target.value)}
+                    rows={3}
+                  />
+                  <p className="text-xs text-muted-foreground">Edit the prompt to regenerate content with different instructions</p>
+                </div>
+              )}
 
               <Button
                 onClick={handleGenerate}
