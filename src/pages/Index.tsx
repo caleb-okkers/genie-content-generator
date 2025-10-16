@@ -128,7 +128,7 @@ const Index = () => {
         <header className="text-center space-y-4 py-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Sparkles className="w-16 h-16 text-primary animate-pulse" />
-            <h1 className="text-5xl md:text-6xl font-bold font-cursive bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
+            <h1 className="text-7xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
               Genie
             </h1>
           </div>
@@ -308,7 +308,7 @@ const Index = () => {
             <CardContent>
               {results.length === 0 ? (
                 <div className="text-center py-12 text-muted-foreground">
-                  <Sparkles className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                  <Sparkles className={`w-16 h-16 mx-auto mb-4 ${loading ? 'animate-pulse text-primary' : 'opacity-20'}`} />
                   <p>Your generated content will appear here</p>
                 </div>
               ) : (

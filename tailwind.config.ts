@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         cursive: ['Pacifico', 'cursive'],
+        calligraphy: ['Great Vibes', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
