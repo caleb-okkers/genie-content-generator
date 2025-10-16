@@ -89,7 +89,7 @@ serve(async (req) => {
     const generatedText = data.choices[0].message.content;
 
     return new Response(
-      JSON.stringify({ content: generatedText }),
+      JSON.stringify({ content: generatedText, prompt: userPrompt }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {

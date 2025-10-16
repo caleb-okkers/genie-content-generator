@@ -30,6 +30,7 @@ const Index = () => {
   const [platform, setPlatform] = useState("");
   const [variations, setVariations] = useState(3);
   const [customPrompt, setCustomPrompt] = useState("");
+  const [lastUsedPrompt, setLastUsedPrompt] = useState("");
   const [results, setResults] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -67,12 +68,17 @@ const Index = () => {
       if (error) throw error;
 
       const content = data.content;
+      const prompt = data.prompt;
       const parsedResults = content
         .split("\n")
         .filter((line: string) => line.trim() && /^\d+\./.test(line.trim()))
         .map((line: string) => line.replace(/^\d+\.\s*/, "").trim());
 
       setResults(parsedResults);
+      setLastUsedPrompt(prompt);
+      if (!customPrompt) {
+        setCustomPrompt(prompt);
+      }
       toast({
         title: "Content generated!",
         description: `Created ${parsedResults.length} variation(s)`,
@@ -102,6 +108,18 @@ const Index = () => {
     a.download = `${contentType}-${index + 1}.txt`;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const handleClear = () => {
+    setBusinessName("");
+    setProductInfo("");
+    setTargetAudience("");
+    setTone("");
+    setPlatform("");
+    setVariations(3);
+    setCustomPrompt("");
+    setLastUsedPrompt("");
+    setResults([]);
   };
 
   return (
@@ -217,13 +235,23 @@ const Index = () => {
                   value={variations}
                   onChange={(e) => {
                     const val = e.target.value;
-                    if (val === '') {
+                    if (val === '' || val === '0') {
                       setVariations(1);
+                      return;
+                    }
+                    const num = parseInt(val, 10);
+                    if (isNaN(num)) return;
+                    if (num < 1) {
+                      setVariations(1);
+                    } else if (num > 5) {
+                      setVariations(5);
                     } else {
-                      const num = parseInt(val);
-                      if (num < 1) setVariations(1);
-                      else if (num > 5) setVariations(5);
-                      else setVariations(num);
+                      setVariations(num);
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (e.target.value === '' || parseInt(e.target.value) < 1) {
+                      setVariations(1);
                     }
                   }}
                 />
@@ -242,24 +270,33 @@ const Index = () => {
                 </div>
               )}
 
-              <Button
-                onClick={handleGenerate}
-                disabled={loading}
-                className="w-full"
-                variant="hero"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Generate Content
-                  </>
-                )}
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  onClick={handleGenerate}
+                  disabled={loading}
+                  className="flex-1"
+                  variant="hero"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate Content
+                    </>
+                  )}
+                </Button>
+                <Button
+                  onClick={handleClear}
+                  disabled={loading}
+                  variant="outline"
+                >
+                  Clear
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
