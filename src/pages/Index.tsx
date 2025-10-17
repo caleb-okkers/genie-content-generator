@@ -125,8 +125,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
-        <header className="text-center space-y-4 py-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
+        <header className="text-center space-y-4 py-12">
+          <div className="flex items-center justify-center gap-3 mb-4 min-h-[120px]">
             <Sparkles className="w-16 h-16 text-primary animate-pulse" />
             <h1 className="text-7xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
               Genie
