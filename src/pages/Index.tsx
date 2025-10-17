@@ -143,10 +143,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
-        <header className="text-center space-y-4 py-12 overflow-visible">
-          <div className="flex items-center justify-center gap-3 mb-4 min-h-[140px] overflow-visible">
-            <Sparkles className="w-16 h-16 text-primary animate-pulse" />
-            <h1 className="text-7xl md:text-8xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap leading-tight">
+        <header className="text-center space-y-4 py-8 md:py-12 overflow-visible">
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 min-h-[80px] sm:min-h-[100px] md:min-h-[120px] lg:min-h-[140px] overflow-visible">
+            <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-primary animate-pulse" />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap leading-tight">
               Genie
             </h1>
           </div>
