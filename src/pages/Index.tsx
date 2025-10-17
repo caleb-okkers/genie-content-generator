@@ -60,7 +60,7 @@ const Index = () => {
     if (hasInappropriateContent) {
       toast({
         title: "Inappropriate content detected",
-        description: "Please remove profanity or inappropriate language from your inputs",
+        description: "Please use more appropriate language.",
         variant: "destructive",
       });
       return;
