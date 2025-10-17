@@ -8,11 +8,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, Sparkles, Copy, Download } from "lucide-react";
+import { Filter } from "bad-words";
 
 type ContentType = "slogan" | "social" | "hashtags" | "product" | "email";
 
 const Index = () => {
   const { toast } = useToast();
+  const filter = new Filter();
   const [contentType, setContentType] = useState<ContentType>("slogan");
   
   const pastelColors = [
@@ -43,6 +45,22 @@ const Index = () => {
       toast({
         title: "Missing information",
         description: "Please fill in business name and product info",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check for inappropriate content
+    const fieldsToCheck = [businessName, productInfo, targetAudience, tone, platform, customPrompt];
+    const hasInappropriateContent = fieldsToCheck.some(field => {
+      if (!field) return false;
+      return filter.isProfane(field);
+    });
+
+    if (hasInappropriateContent) {
+      toast({
+        title: "Inappropriate content detected",
+        description: "Please remove profanity or inappropriate language from your inputs",
         variant: "destructive",
       });
       return;
@@ -125,10 +143,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 p-6">
       <div className="max-w-6xl mx-auto space-y-8">
-        <header className="text-center space-y-4 py-12">
-          <div className="flex items-center justify-center gap-3 mb-4 min-h-[120px]">
+        <header className="text-center space-y-4 py-12 overflow-visible">
+          <div className="flex items-center justify-center gap-3 mb-4 min-h-[140px] overflow-visible">
             <Sparkles className="w-16 h-16 text-primary animate-pulse" />
-            <h1 className="text-7xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap">
+            <h1 className="text-7xl md:text-8xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap leading-tight">
               Genie
             </h1>
           </div>
