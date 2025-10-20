@@ -146,7 +146,7 @@ const Index = () => {
         <header className="text-center space-y-4 py-8 md:py-12 overflow-visible">
           <div className="flex items-center justify-center gap-2 md:gap-3 mb-6 min-h-[120px] sm:min-h-[140px] md:min-h-[160px] lg:min-h-[180px] overflow-visible px-6 py-6 md:py-8">
             <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-primary animate-pulse" />
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-calligraphy bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-poppins bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent whitespace-nowrap leading-relaxed">
               Genie
             </h1>
           </div>
