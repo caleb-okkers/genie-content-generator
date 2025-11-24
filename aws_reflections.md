@@ -8,7 +8,7 @@
 - Used a t2.micro instance (free tier).
 - Health monitoring left at Basic.
 - No managed platform updates enabled.
-- Environment runs successfully at: <AWS URL>
+- Environment runs successfully at: https://af-south-1.console.aws.amazon.com/elasticbeanstalk/home?region=af-south-1#/environment/dashboard?environmentId=e-7wzmcpbrca
 
 ## Security
 - Used IAM admin user (not root).
