@@ -37,15 +37,15 @@
 
 ## **Azure CI/CD Setup (GitHub Actions) for Static Web App**
 
-To automate deployments on Azure, I deployed the app as a **Static Web App** and connected it directly to my GitHub repository.
+To automate deployments on Azure, we deployed the app as a **Static Web App** and connected it directly to our GitHub repository.
 
 1. **Created the Static Web App**
 
-   * Set up through the Azure Portal and linked to my GitHub repo and `main` branch during creation.
+   * Set up through the Azure Portal and linked to our GitHub repo and `main` branch during creation.
 
 2. **Workflow Auto-Generated**
 
-   * Azure automatically created a GitHub Actions workflow file in `.github/workflows`, configured for my project structure.
+   * Azure automatically created a GitHub Actions workflow file in `.github/workflows`, configured for our project structure.
 
 3. **Build & Deployment Config**
 
@@ -57,7 +57,7 @@ To automate deployments on Azure, I deployed the app as a **Static Web App** and
 
 5. **Automated CI/CD Flow**
 
-   * Every time I **push to the main branch**:
+   * Every time we **push to the main branch**:
 
      * GitHub Actions runs
      * Builds the static site
